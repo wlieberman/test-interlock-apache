@@ -4,7 +4,7 @@ services:
   website:
     image: wlieberman/test-interlock-apache:0.0.6
     deploy:        
-      replicas: 1
+      mode: global
       labels:
         com.docker.lb.hosts: test-interlock.billylieberman.com	# Replace with a real URL
         com.docker.lb.network: test-interlock_myoverlay # the network that the layer 7 mesh will hand-off to
