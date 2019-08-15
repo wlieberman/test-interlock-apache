@@ -1,0 +1,18 @@
+version: '3.7'
+
+services:
+  website:
+    image: wlieberman/test-interlock-apache:0.0.6
+    deploy:        
+      replicas: 1
+      labels:
+        com.docker.lb.hosts: test-interlock.billylieberman.com	# Replace with a real URL
+        com.docker.lb.network: test-interlock_myoverlay # the network that the layer 7 mesh will hand-off to
+        com.docker.lb.port: 80 # the port the service expects traffic on
+    networks:
+        - myoverlay   # custom overlay network the service will use
+
+networks:
+  myoverlay:  # the custom service definition
+    driver: overlay
+
